@@ -1,0 +1,21 @@
+{
+  "name": "google-omnimemory",
+  "description": "Decoupled out-of-band memory agent & allocator for OpenCode. Prevents prompt bloat by logging steps to LevelDB and querying on-demand via ScaNN.",
+  "type": "mcp",
+  "mcp": {
+    "command": "python",
+    "args": ["-m", "omni_memory.mcp"],
+    "env": {
+      "PYTHONPATH": "."
+    }
+  },
+  "tools": [
+    "omnimemory_track_step",
+    "omnimemory_query_scann",
+    "omnimemory_trigger_callback",
+    "omnimemory_get_template",
+    "omnimemory_revise_context",
+    "omnimemory_get_telemetry"
+  ],
+  "default_callback_source": "opencode"
+}

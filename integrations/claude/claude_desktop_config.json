@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "g-omnios": {
+      "command": "python",
+      "args": ["-m", "omni_memory.mcp"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  }
+}

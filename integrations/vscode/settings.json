@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "g-omnios": {
+      "command": "python",
+      "args": ["-m", "omni_memory.mcp"],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  },
+  "gomnios.serverUrl": "http://127.0.0.1:8765",
+  "gomnios.autoStartServer": true,
+  "gomnios.showStatusBar": true
+}

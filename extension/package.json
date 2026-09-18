@@ -1,0 +1,89 @@
+{
+  "name": "google-omnimemory",
+  "displayName": "Google OmniMemory",
+  "description": "Decoupled Memory Agent & Allocator fusing Google open-source tools (Always-On Agent, ReasoningBank, Diff-Match-Patch, LevelDB, ScaNN, SentencePiece) for zero prompt bloat.",
+  "version": "1.0.0",
+  "publisher": "google-tools",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "AI",
+    "Machine Learning",
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "memory-agent",
+    "prompt-caching",
+    "zero-prompt-bloat",
+    "google-research",
+    "scann",
+    "leveldb",
+    "diff-match-patch",
+    "reasoningbank"
+  ],
+  "activationEvents": [
+    "onCommand:omniMemory.openDashboard",
+    "onCommand:omniMemory.triggerCallback",
+    "onCommand:omniMemory.startServer",
+    "onCommand:omniMemory.selectTemplate",
+    "onCommand:omniMemory.queryScann",
+    "onCommand:omniMemory.runSimulation"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "omniMemory.openDashboard",
+        "title": "OmniMemory: Open Real-Time Dashboard",
+        "category": "OmniMemory"
+      },
+      {
+        "command": "omniMemory.triggerCallback",
+        "title": "OmniMemory: Trigger Callback & Show Template",
+        "category": "OmniMemory"
+      },
+      {
+        "command": "omniMemory.selectTemplate",
+        "title": "OmniMemory: Select Reasoning Template",
+        "category": "OmniMemory"
+      },
+      {
+        "command": "omniMemory.queryScann",
+        "title": "OmniMemory: Query ScaNN Vector Memory",
+        "category": "OmniMemory"
+      },
+      {
+        "command": "omniMemory.runSimulation",
+        "title": "OmniMemory: Run Multi-Step Reasoning Simulation",
+        "category": "OmniMemory"
+      },
+      {
+        "command": "omniMemory.startServer",
+        "title": "OmniMemory: Start Dashboard Server",
+        "category": "OmniMemory"
+      }
+    ],
+    "configuration": {
+      "title": "Google OmniMemory",
+      "properties": {
+        "omniMemory.serverPort": {
+          "type": "integer",
+          "default": 8765,
+          "description": "Port on which the OmniMemory dashboard server runs."
+        },
+        "omniMemory.pythonPath": {
+          "type": "string",
+          "default": "python",
+          "description": "Path to Python interpreter (python or custom path)."
+        },
+        "omniMemory.autoStartServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically spawn dashboard server if not running when commands are triggered."
+        }
+      }
+    }
+  }
+}

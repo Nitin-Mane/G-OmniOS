@@ -1,0 +1,123 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "omnimemory_track_step",
+      "description": "Log an intermediate thought or execution step out-of-band into Google LevelDB WAL. Shields tokens from the active prompt window to eliminate prompt bloat.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Short title of the step"
+          },
+          "thought": {
+            "type": "string",
+            "description": "Out-of-band chain-of-thought scratchpad, calculations, or notes"
+          },
+          "observation": {
+            "type": "string",
+            "description": "Output or verified findings"
+          },
+          "phase": {
+            "type": "string",
+            "enum": ["deliberation", "hypothesis", "planning", "code_gen", "execution", "verification"],
+            "default": "deliberation"
+          },
+          "is_milestone": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": ["title", "thought"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "omnimemory_query_scann",
+      "description": "Query Google ScaNN dense vector memory for past concepts, rules, or formulas without inflating the prompt window.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Natural language or semantic search query"
+          },
+          "top_k": {
+            "type": "integer",
+            "default": 3
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "gomnios_mind4action_cycle",
+      "description": "Execute a 4-stage Mind4Action cognitive cycle (Perceive -> Reflect -> Intend -> Act). Models cognitive ergonomics and logs steps out-of-band.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "stimulus": {
+            "type": "string",
+            "description": "The incoming user instruction or goal"
+          }
+        },
+        "required": ["stimulus"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "gomnios_department_dispatch",
+      "description": "Dispatch a strategic task to an organizational agent department (Manager, HR, Fullstack, Catalog, Marketing, DevOps).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "department": {
+            "type": "string",
+            "enum": ["manager", "hr", "fullstack", "catalog", "marketing", "devops"]
+          },
+          "task": {
+            "type": "string",
+            "default": "status"
+          }
+        },
+        "required": ["department"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "omnimemory_trigger_callback",
+      "description": "Send a callback event to activate a ReasoningBank blueprint on the live G-OmniOS web dashboard.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "template_id": {
+            "type": "string",
+            "enum": ["raft", "trading", "refactor", "research"]
+          },
+          "source": {
+            "type": "string",
+            "enum": ["chatgpt", "codex", "claude", "qwen", "vscode", "antigravity", "cli"],
+            "default": "chatgpt"
+          },
+          "message": {
+            "type": "string"
+          },
+          "step_title": {
+            "type": "string"
+          }
+        },
+        "required": ["template_id"]
+      }
+    }
+  }
+]

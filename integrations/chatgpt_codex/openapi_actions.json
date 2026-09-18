@@ -1,0 +1,164 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "G-OmniOS API",
+    "description": "Universal AI Operating System & Cognitive Memory Platform for autonomous agents, ChatGPT Custom GPTs, and assistants.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8765",
+      "description": "Local G-OmniOS Dashboard & API Server"
+    }
+  ],
+  "paths": {
+    "/api/mind4action": {
+      "post": {
+        "operationId": "runMind4ActionCycle",
+        "summary": "Execute Mind4Action 4-stage cognitive cycle",
+        "description": "Perceive stimulus, reflect with cognitive metrics, formulate safe intention, and execute action out-of-band.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "stimulus": { "type": "string", "description": "Incoming goal or stimulus" }
+                },
+                "required": ["stimulus"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Mind4Action cycle executed successfully." }
+        }
+      }
+    },
+    "/api/callback": {
+      "post": {
+        "operationId": "triggerCallback",
+        "summary": "Trigger a dashboard callback and template activation",
+        "description": "Sends an execution callback to the live web console and activates the related template.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string",
+                    "description": "Event name or action title"
+                  },
+                  "template_id": {
+                    "type": "string",
+                    "enum": ["raft", "trading", "refactor", "research"],
+                    "description": "Task template to focus on the webapp"
+                  },
+                  "source": {
+                    "type": "string",
+                    "enum": ["chatgpt", "codex", "antigravity", "claude", "qwen", "vscode", "cli"],
+                    "default": "chatgpt"
+                  },
+                  "payload": {
+                    "type": "object",
+                    "properties": {
+                      "message": { "type": "string" },
+                      "step_title": { "type": "string" }
+                    }
+                  }
+                },
+                "required": ["template_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Callback successfully received and broadcast over SSE."
+          }
+        }
+      }
+    },
+    "/api/step": {
+      "post": {
+        "operationId": "recordStep",
+        "summary": "Record reasoning step out-of-band",
+        "description": "Persists an agent thought or execution step into LevelDB WAL to save prompt tokens.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string" },
+                  "thought": { "type": "string" },
+                  "observation": { "type": "string" },
+                  "phase": {
+                    "type": "string",
+                    "enum": ["deliberation", "hypothesis", "planning", "code_gen", "execution", "verification"],
+                    "default": "deliberation"
+                  },
+                  "is_milestone": { "type": "boolean", "default": false }
+                },
+                "required": ["title", "thought"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Step recorded and indexed."
+          }
+        }
+      }
+    },
+    "/api/query": {
+      "post": {
+        "operationId": "querySemanticMemory",
+        "summary": "Query memory via Google ScaNN dense vectors",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": { "type": "string" },
+                  "top_k": { "type": "integer", "default": 3 }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Top-K semantic memory matches returned."
+          }
+        }
+      }
+    },
+    "/api/departments": {
+      "get": {
+        "operationId": "listDepartments",
+        "summary": "List specialized agent departments (Manager, HR, Fullstack, Catalog, Marketing, DevOps)",
+        "responses": {
+          "200": { "description": "Roster of specialized agent teams." }
+        }
+      }
+    },
+    "/api/telemetry": {
+      "get": {
+        "operationId": "getTelemetry",
+        "summary": "Get real-time token savings and memory metrics",
+        "responses": {
+          "200": { "description": "Current telemetry and token economics." }
+        }
+      }
+    }
+  }
+}

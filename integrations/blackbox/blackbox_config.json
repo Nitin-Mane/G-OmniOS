@@ -1,0 +1,16 @@
+{
+  "name": "google-omnimemory",
+  "assistant": "blackbox",
+  "transport": "stdio-mcp",
+  "server": {
+    "command": "python",
+    "args": ["-m", "omni_memory.mcp"],
+    "env": {
+      "PYTHONPATH": "."
+    }
+  },
+  "callback": {
+    "source": "blackbox",
+    "dashboard_url": "http://127.0.0.1:8765"
+  }
+}

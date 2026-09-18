@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+
+# LevelDB runtime storage & logs
+.benchmark_leveldb/
+.omni_memory_leveldb/
+.test_server_leveldb/
+*.leveldb/
+*.log
+
+# Node & VS Code Extension
+node_modules/
+*.vsix
+.vscode-test/
+
+# Environments & OS
+.env
+.env.*
+*.env
+*.key
+*.pem
+.venv
+env/
+venv/
+ENV/
+.DS_Store
+Thumbs.db
+
+# Test suites & benchmarks (excluded per publication guidelines)
+tests/
+.pytest_cache/
+
+# Agent IDE customizations & scratch data
+.agents/
+.gemini/
+scratch/

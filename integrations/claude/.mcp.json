@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "google-omnimemory": {
+      "command": "python",
+      "args": ["-m", "omni_memory.mcp"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  }
+}

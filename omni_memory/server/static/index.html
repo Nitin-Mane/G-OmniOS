@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G-OmniOS | Universal AI Operating System & Cognitive Memory Platform</title>
+  <meta name="description" content="G-OmniOS: Universal AI Operating System and Mind4Action Engine tracking thinking processes, cognitive ergonomics, and scheduling persona skills across Technical, Social, and Mental ability tracks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Ambient background glow elements -->
+  <div class="glow-orb orb-primary"></div>
+  <div class="glow-orb orb-secondary"></div>
+  <div class="glow-orb orb-accent"></div>
+
+  <div class="app-layout">
+    <!-- Header -->
+    <header class="app-header glass-card">
+      <div class="brand-section">
+        <div class="brand-badge">
+          <svg class="google-icon" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span class="brand-name">G-OmniOS</span>
+        </div>
+        <div class="version-tag">Universal AI Memory & Mind4Action OS</div>
+      </div>
+
+      <div class="tools-badges">
+        <span class="tool-badge" title="Always-On Memory Agent"><span class="dot green"></span>Always-On Agent</span>
+        <span class="tool-badge" title="Mind4Action Engine: Perceive-Reflect-Intend-Act"><span class="dot green"></span>Mind4Action</span>
+        <span class="tool-badge" title="Context Governor: Token & Focus Optimizer"><span class="dot purple"></span>Context Governor</span>
+        <span class="tool-badge" title="Google Research ReasoningBank"><span class="dot blue"></span>ReasoningBank</span>
+        <span class="tool-badge" title="Google Diff-Match-Patch"><span class="dot yellow"></span>Diff-Match-Patch</span>
+        <span class="tool-badge" title="Google LevelDB WAL"><span class="dot purple"></span>LevelDB WAL</span>
+        <span class="tool-badge" title="Google ScaNN Vectors"><span class="dot cyan"></span>ScaNN Search</span>
+      </div>
+
+      <div class="header-actions">
+        <button id="btnSimulate" class="btn btn-primary glow-btn">
+          <span class="btn-icon">⚡</span> Run Simulation
+        </button>
+        <button id="btnQuickM4A" class="btn btn-accent glow-btn" title="Run Mind4Action Cycle">
+          <span class="btn-icon">🧠</span> Mind4Action
+        </button>
+        <button id="btnRevise" class="btn btn-secondary">
+          <span class="btn-icon">🔄</span> Revise Context
+        </button>
+        <button id="btnReset" class="btn btn-outline" title="Start a fresh task session">
+          <span class="btn-icon">✨</span> New Session
+        </button>
+      </div>
+    </header>
+
+    <!-- Cognitive & Psychological Telemetry Strip -->
+    <section class="cognitive-telemetry-bar glass-card">
+      <div class="cog-stat-item">
+        <span class="cog-label">Cognitive Load Index (CLI)</span>
+        <div class="cog-meter-wrap">
+          <div class="meter-bar"><div id="cliBar" class="meter-fill cli-fill" style="width: 20%;"></div></div>
+          <span id="cliVal" class="cog-val">0.20</span>
+        </div>
+      </div>
+      <div class="cog-stat-item">
+        <span class="cog-label">Flow Score</span>
+        <div class="cog-meter-wrap">
+          <div class="meter-bar"><div id="flowBar" class="meter-fill flow-fill" style="width: 85%;"></div></div>
+          <span id="flowVal" class="cog-val highlight-green">0.85</span>
+        </div>
+      </div>
+      <div class="cog-stat-item">
+        <span class="cog-label">Psychological State</span>
+        <div class="cog-badge-wrap">
+          <span id="psyStateBadge" class="badge-psy psy-flow">FLOW</span>
+          <span id="cogPatternBadge" class="badge-pattern">ANALYTICAL</span>
+        </div>
+      </div>
+      <div class="cog-stat-item">
+        <span class="cog-label">Deliberation Depth</span>
+        <span id="delibDepthVal" class="cog-val highlight-cyan">2.4 / 5.0</span>
+      </div>
+      <div class="cog-stat-item">
+        <span class="cog-label">Active Persona Skill</span>
+        <span id="activeSkillBadge" class="badge-skill">Universal Default</span>
+      </div>
+      <div class="cog-stat-item">
+        <span class="cog-label">Context Health Score</span>
+        <span id="safetyScoreVal" class="cog-val highlight-purple">1.00 (100%)</span>
+      </div>
+    </section>
+
+    <!-- App Navigation Tabs -->
+    <nav class="app-nav-tabs">
+      <button class="nav-tab active" data-tab="tab-memory">
+        <span class="tab-icon">💾</span> Memory & Token Economics
+      </button>
+      <button class="nav-tab" data-tab="tab-mind4action">
+        <span class="tab-icon">🧠</span> Mind4Action Engine
+      </button>
+      <button class="nav-tab" data-tab="tab-firewall">
+        <span class="tab-icon">🎯</span> Context Governor & Optimizer
+      </button>
+      <button class="nav-tab" data-tab="tab-catalog">
+        <span class="tab-icon">📚</span> Persona Skills Catalog
+      </button>
+      <button class="nav-tab" data-tab="tab-departments">
+        <span class="tab-icon">👥</span> Organizational Agent Teams
+      </button>
+    </nav>
+
+    <!-- Real-time Callback Notification Toast -->
+    <div id="callbackToast" class="callback-toast glass-card" style="display: none;">
+      <div class="callback-toast-content">
+        <div class="callback-toast-icon">⚡</div>
+        <div class="callback-toast-body">
+          <div class="callback-toast-title">
+            <span id="callbackSourceBadge" class="source-badge">VS Code</span>
+            <span id="callbackEventTitle">Callback Event Triggered</span>
+          </div>
+          <div id="callbackEventDetails" class="callback-toast-desc">Synchronized related template and memory state.</div>
+        </div>
+      </div>
+      <button id="btnCloseCallbackToast" class="callback-toast-close">&times;</button>
+    </div>
+
+    <!-- TAB 1: Memory & Token Economics -->
+    <div id="tab-memory" class="tab-pane active">
+      <!-- Top KPI Grid: Zero-Token-Bloat Economics -->
+      <section class="kpi-grid">
+        <!-- Token Savings Card -->
+        <div class="kpi-card glass-card hero-kpi">
+          <div class="kpi-header">
+            <span class="kpi-label">Prompt Tokens Saved</span>
+            <span class="kpi-tag success">Zero Prompt Bloat</span>
+          </div>
+          <div class="kpi-value-row">
+            <span id="savedTokens" class="kpi-value highlight-green">0</span>
+            <span class="kpi-unit">tokens (<span id="savedPct">0%</span>)</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="savingsProgress" class="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+          <div class="kpi-footer-sub">
+            <span>Raw steps shielded: <strong id="rawTokens">0</strong></span>
+            <span>Prompt load: <strong id="activePromptTokens">0</strong> / <span id="promptBudget">800</span></span>
+          </div>
+        </div>
+
+        <!-- Working Memory Allocation -->
+        <div class="kpi-card glass-card">
+          <div class="kpi-header">
+            <span class="kpi-label">Working Memory Slot</span>
+            <span class="kpi-tag cyan">SentencePiece</span>
+          </div>
+          <div class="kpi-value-row">
+            <span id="workingTokens" class="kpi-value">0</span>
+            <span class="kpi-sub-cap">/ 800 budget</span>
+          </div>
+          <p class="kpi-desc">Strictly bounded active context fed to LLM. Never overflows.</p>
+        </div>
+
+        <!-- Episodic Milestones -->
+        <div class="kpi-card glass-card">
+          <div class="kpi-header">
+            <span class="kpi-label">Episodic Milestones</span>
+            <span class="kpi-tag blue">ReasoningBank</span>
+          </div>
+          <div class="kpi-value-row">
+            <span id="episodicCount" class="kpi-value">0</span>
+            <span class="kpi-sub-cap">milestones</span>
+          </div>
+          <p class="kpi-desc">Consolidated strategy checkpoints distilled from raw steps.</p>
+        </div>
+
+        <!-- ScaNN Vector Index -->
+        <div class="kpi-card glass-card">
+          <div class="kpi-header">
+            <span class="kpi-label">Semantic Recall Index</span>
+            <span class="kpi-tag purple">Google ScaNN</span>
+          </div>
+          <div class="kpi-value-row">
+            <span id="scannCount" class="kpi-value">0</span>
+            <span class="kpi-sub-cap">indexed slots</span>
+          </div>
+          <p class="kpi-desc">Quantized vector space for on-demand associative recall.</p>
+        </div>
+      </section>
+
+      <!-- Related Agent Template Gallery -->
+      <section class="panel glass-card template-section">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <span class="panel-badge blue-badge">ReasoningBank</span>
+            <h3>Task & Agent Prompt Templates</h3>
+          </div>
+          <div class="template-tab-bar" id="templateTabBar"></div>
+        </div>
+        <div class="template-content-grid" id="templateDetailView">
+          <div class="template-info-col">
+            <div class="template-heading-row">
+              <h4 id="templateTitle">Raft Consensus & Distributed State Machine</h4>
+              <span id="templateCategory" class="tier-pill tier-episodic">Distributed Systems</span>
+            </div>
+            <p id="templateDesc" class="template-desc-text">Leader election, heartbeat replication, quorum safety, and log compaction with strict out-of-band step tracking.</p>
+            <div class="template-meta-row">
+              <span>Working Budget: <strong id="templateBudget">600 tokens</strong></span>
+              <span>Sample Recall Query: <code id="templateQuery">network partition minority leader</code></span>
+            </div>
+            <div class="template-actions">
+              <button id="btnLoadTemplate" class="btn btn-primary btn-sm">Load Into Active Agent</button>
+              <button id="btnTestTemplateSearch" class="btn btn-secondary btn-sm">Run Sample Query</button>
+            </div>
+          </div>
+          <div class="template-prompt-col">
+            <div class="template-prompt-header">
+              <span>Prompt Window Definition (Bounded)</span>
+              <span class="badge-status online">Ready</span>
+            </div>
+            <pre id="templatePromptText" class="code-preview template-prompt-preview"></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Workspace Split -->
+      <main class="workspace-grid">
+        <!-- Left Column: Out-of-Band Step Ledger & Activity -->
+        <div class="col-left">
+          <!-- Live Step Ledger -->
+          <div class="panel glass-card">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-badge green-badge">LevelDB WAL</span>
+                <h3>Progress Steps & Thought Stream</h3>
+              </div>
+              <span class="badge-count" id="stepCounter">0 Steps</span>
+            </div>
+            <p class="panel-subtitle">Captured out-of-band as the model thinks & writes. Shielded from prompt window.</p>
+            
+            <div class="step-stream" id="stepStream">
+              <div class="empty-state">
+                <div class="spinner-empty"></div>
+                <p>Ready to observe LLM steps. Click <strong>"Run Simulation"</strong> or add a step below.</p>
+              </div>
+            </div>
+
+            <!-- Add Step Quick Form -->
+            <div class="quick-add-step">
+              <input type="text" id="stepTitleInput" placeholder="Step title (e.g., Formulate solution)..." class="input-glass">
+              <select id="stepPhaseSelect" class="input-glass select-glass">
+                <option value="deliberation">Deliberation</option>
+                <option value="hypothesis">Hypothesis</option>
+                <option value="planning">Planning</option>
+                <option value="code_gen">Code Writing</option>
+                <option value="execution">Execution</option>
+                <option value="verification">Verification</option>
+              </select>
+              <button id="btnAddStep" class="btn btn-sm btn-accent">Track Step</button>
+            </div>
+          </div>
+
+          <!-- ScaNN Semantic Search Simulator -->
+          <div class="panel glass-card scann-panel">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-badge cyan-badge">Google ScaNN</span>
+                <h3>On-Demand Semantic Memory Query</h3>
+              </div>
+            </div>
+            <p class="panel-subtitle">Retrieves past memory without loading full history into prompt.</p>
+            <div class="search-box">
+              <input type="text" id="scannQueryInput" placeholder="Query past concepts (e.g., 'LevelDB WAL', 'budget')..." class="input-glass">
+              <button id="btnScannSearch" class="btn btn-secondary btn-sm">Search</button>
+            </div>
+            <div id="scannResults" class="scann-results-container">
+              <div class="empty-hint">Enter a query to test ScaNN vector nearest neighbors.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Context Revision & Prompt Inspector -->
+        <div class="col-right">
+          <!-- Canonical Revised Context Inspector -->
+          <div class="panel glass-card">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-badge yellow-badge">Always-On Agent</span>
+                <h3>Canonical Revised Memory Context</h3>
+              </div>
+              <span class="badge-status online">Live Consolidated</span>
+            </div>
+            <p class="panel-subtitle">Synthesized by the Memory Agent. Replaces thousands of noisy tokens with clean state.</p>
+            <div class="code-preview-wrap">
+              <pre class="code-preview" id="canonicalContextView">Initializing context...</pre>
+            </div>
+          </div>
+
+          <!-- Diff-Match-Patch Revision History -->
+          <div class="panel glass-card">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-badge purple-badge">Diff-Match-Patch</span>
+                <h3>Context Delta Revision Inspector</h3>
+              </div>
+            </div>
+            <p class="panel-subtitle">Semantic diffs between thinking iterations (Myers diff algorithm).</p>
+            <div id="revisionsList" class="revisions-stream">
+              <div class="empty-hint">Revisions will appear as the Memory Agent consolidates steps.</div>
+            </div>
+          </div>
+
+          <!-- LLM Prompt Inspector -->
+          <div class="panel glass-card">
+            <div class="panel-header">
+              <div class="panel-title-wrap">
+                <span class="panel-badge red-badge">SentencePiece</span>
+                <h3>Active LLM Prompt Inspector</h3>
+              </div>
+              <span id="promptTokenBadge" class="badge-count">0 Tokens</span>
+            </div>
+            <p class="panel-subtitle">The actual window fed into the model — strictly constant and clean.</p>
+            <div class="code-preview-wrap compact-prompt">
+              <pre class="code-preview" id="activePromptView">Loading prompt window...</pre>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- TAB 2: Mind4Action Activity Engine -->
+    <div id="tab-mind4action" class="tab-pane">
+      <section class="panel glass-card m4a-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <span class="panel-badge green-badge">Mind4Action</span>
+            <h3>Mind4Action 4-Phase Activity Cycle</h3>
+          </div>
+          <span class="badge-status online">Perceive → Reflect → Intend → Act</span>
+        </div>
+        <p class="panel-subtitle">
+          Models human cognitive process and psychological behaviors. Decomposes tasks into perceptual tracking, reflection with stress indicators, firewall intention formulation, and zero-token WAL action.
+        </p>
+
+        <!-- Interactive Trigger Form -->
+        <div class="m4a-input-row">
+          <input type="text" id="m4aStimulusInput" placeholder="Enter stimulus, instruction, or goal to process..." class="input-glass m4a-input" value="Synthesize an architectural consensus plan for distributed state machines">
+          <button id="btnExecuteM4A" class="btn btn-accent glow-btn">
+            <span>Execute 4-Phase Cycle</span>
+          </button>
+        </div>
+
+        <!-- Presets Bar -->
+        <div class="m4a-presets-bar">
+          <span class="preset-label">Quick Stimulus Presets:</span>
+          <button class="btn-preset" data-text="Deconstruct portfolio covariance matrix for risk parity trading">Technical: Quant Risk</button>
+          <button class="btn-preset" data-text="Reconcile divergent engineering trade-offs and build stakeholder consensus">Social: Cross-Team Alignment</button>
+          <button class="btn-preset" data-text="Maintain calm, systematic root-cause debugging under severe outage pressure">Mental: Outage Resilience</button>
+          <button class="btn-preset" data-text="Refactor agent memory into decoupled out-of-band micro-architecture">Technical: AST Refactoring</button>
+        </div>
+
+        <!-- Visual 4-Stage Stepper Cards -->
+        <div class="m4a-stepper-grid">
+          <!-- Stage 1: Perceive -->
+          <div class="m4a-stage-card glass-card" id="m4aStagePerceive">
+            <div class="stage-header">
+              <div class="stage-number">1</div>
+              <div class="stage-title">Perceive</div>
+            </div>
+            <p class="stage-desc">Identifies stimulus keywords, token volume, and relevant ability tracks.</p>
+            <div class="stage-meta" id="perceiveMeta">
+              <div>Tracks: <span class="badge-track track-technical">Technical</span></div>
+              <div class="text-dim">Token count: ~12 words</div>
+            </div>
+          </div>
+
+          <!-- Stage 2: Reflect -->
+          <div class="m4a-stage-card glass-card" id="m4aStageReflect">
+            <div class="stage-header">
+              <div class="stage-number">2</div>
+              <div class="stage-title">Reflect</div>
+            </div>
+            <p class="stage-desc">Computes Cognitive Load Index (CLI), Flow Score, Stress, and Deliberation Depth.</p>
+            <div class="stage-meta" id="reflectMeta">
+              <div>CLI: <strong id="m4aCli">0.15</strong> | Flow: <strong class="highlight-green" id="m4aFlow">0.88</strong></div>
+              <div>State: <span class="badge-psy psy-flow" id="m4aPsy">FLOW</span></div>
+            </div>
+          </div>
+
+          <!-- Stage 3: Intend -->
+          <div class="m4a-stage-card glass-card" id="m4aStageIntend">
+            <div class="stage-header">
+              <div class="stage-number">3</div>
+              <div class="stage-title">Intend</div>
+            </div>
+            <p class="stage-desc">Applies firewall rules, safeguards psychological state, and bounds intention.</p>
+            <div class="stage-meta" id="intendMeta">
+              <div>Target Action: <strong class="highlight-cyan" id="m4aTargetAction">deep_deliberation_wal</strong></div>
+              <div>Firewall: <span class="badge-status online" id="m4aFirewallPassed">Passed</span></div>
+            </div>
+          </div>
+
+          <!-- Stage 4: Act -->
+          <div class="m4a-stage-card glass-card" id="m4aStageAct">
+            <div class="stage-header">
+              <div class="stage-number">4</div>
+              <div class="stage-title">Act</div>
+            </div>
+            <p class="stage-desc">Executes action out-of-band into LevelDB WAL without polluting LLM prompt.</p>
+            <div class="stage-meta" id="actMeta">
+              <div>Status: <span class="highlight-green" id="m4aActStatus">logged_to_leveldb_wal</span></div>
+              <div>WAL Key: <span class="code-pill" id="m4aWalKey">step_latest</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mind4Action Execution History Stream -->
+        <div class="m4a-history-section">
+          <h4>Mind4Action Turn History</h4>
+          <div class="m4a-turns-container" id="m4aTurnsContainer">
+            <div class="empty-hint">Completed Mind4Action cycles will appear here.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB 3: Context Governor & Optimizer -->
+    <div id="tab-firewall" class="tab-pane">
+      <section class="panel glass-card firewall-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <span class="panel-badge purple-badge">Context Governor</span>
+            <h3>G-OmniOS Context Governor & Quality Optimizer</h3>
+          </div>
+          <span class="badge-status online" id="firewallShieldActive">Active Quality Invariants</span>
+        </div>
+        <p class="panel-subtitle">
+          Intelligently models cognitive bandwidth and prompt ergonomics. Eliminates cognitive overload, breaks repetitive reasoning loops, shields confidential data, and eliminates prompt bloat before reaching the model.
+        </p>
+
+        <!-- Context Governor Invariants Grid -->
+        <div class="firewall-rules-grid">
+          <div class="firewall-rule-card glass-card">
+            <div class="rule-header">
+              <span class="rule-icon">⚡</span>
+              <h4>Cognitive Load & Focus Balancer</h4>
+            </div>
+            <p>Triggers when CLI &gt; 0.80 and incoming text exceeds mental processing bandwidth. Diverts overflow out-of-band to preserve clarity.</p>
+            <div class="rule-status"><span class="dot green"></span> Quality Invariant Enforced</div>
+          </div>
+
+          <div class="firewall-rule-card glass-card">
+            <div class="rule-header">
+              <span class="rule-icon">🔁</span>
+              <h4>Repetitive Loop Breaker & Insight Pivot</h4>
+            </div>
+            <p>Detects when reasoning steps or agent prompt context recycle repetitive concepts (uniqueness ratio &lt; 0.35). Enforces fresh perspectives.</p>
+            <div class="rule-status"><span class="dot green"></span> Quality Invariant Enforced</div>
+          </div>
+
+          <div class="firewall-rule-card glass-card">
+            <div class="rule-header">
+              <span class="rule-icon">🔒</span>
+              <h4>Confidential Data & Privacy Shield</h4>
+            </div>
+            <p>Identifies confidential statements, sensitive personal notes, or credentials, storing them safely in LevelDB WAL without exposing to prompts.</p>
+            <div class="rule-status"><span class="dot green"></span> Privacy Invariant Enforced</div>
+          </div>
+
+          <div class="firewall-rule-card glass-card">
+            <div class="rule-header">
+              <span class="rule-icon">🎯</span>
+              <h4>Prompt Optimizer & Token Compressor</h4>
+            </div>
+            <p>Caps LLM working prompt at 700 tokens. Diverts non-essential reasoning steps directly to out-of-band persistent storage.</p>
+            <div class="rule-status"><span class="dot green"></span> Efficiency Invariant Enforced</div>
+          </div>
+        </div>
+
+        <!-- Live Context Governor Inspector Sandbox -->
+        <div class="firewall-sandbox glass-card">
+          <div class="sandbox-header">
+            <h4>Live Context Governor Inspector</h4>
+            <span class="text-dim">Test any prompt or thought for invariant compliance and optimization</span>
+          </div>
+          <div class="sandbox-body">
+            <textarea id="firewallTestInput" class="input-glass sandbox-textarea" rows="3" placeholder="Type prompt context or test confidential phrases (e.g. 'I am feeling overwhelmed and my api key is...')..."></textarea>
+            <div class="sandbox-actions">
+              <button id="btnInspectFirewall" class="btn btn-primary">
+                <span>🎯 Inspect & Optimize Prompt</span>
+              </button>
+              <button class="btn btn-outline btn-sm" id="btnPresetOverload">Test Overload Example</button>
+              <button class="btn btn-outline btn-sm" id="btnPresetLeak">Test Privacy Shield</button>
+            </div>
+            <div id="firewallVerdictResult" class="firewall-verdict-box" style="display: none;">
+              <!-- Verdict populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB 4: Persona Skills Catalog -->
+    <div id="tab-catalog" class="tab-pane">
+      <section class="panel glass-card catalog-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <span class="panel-badge cyan-badge">Persona Catalog</span>
+            <h3>Persona Skills Catalog across Universal Ability Tracks</h3>
+          </div>
+          <div class="catalog-filter-bar">
+            <button class="btn-filter active" data-track="all">All Tracks</button>
+            <button class="btn-filter" data-track="technical">Technical Track</button>
+            <button class="btn-filter" data-track="social">Social Track</button>
+            <button class="btn-filter" data-track="mental">Mental Track</button>
+          </div>
+        </div>
+        <p class="panel-subtitle">
+          Modular memory-building capabilities tailored to user thinking, cognitive patterns, and ability tracks. Scheduled out-of-band by the G-OmniOS Firewall Hub.
+        </p>
+
+        <!-- Skills Grid Container -->
+        <div class="skills-grid" id="skillsGridContainer">
+          <!-- Populated dynamically via JS from /api/skills/catalog -->
+          <div class="empty-state"><div class="spinner-empty"></div><p>Loading Persona Skills Catalog...</p></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB 5: Organizational Agent Teams -->
+    <div id="tab-departments" class="tab-pane">
+      <section class="panel glass-card departments-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <span class="panel-badge yellow-badge">Department Agents</span>
+            <h3>G-OmniOS Organizational Agent Teams</h3>
+          </div>
+          <span class="badge-status online">6 Active Agent Departments</span>
+        </div>
+        <p class="panel-subtitle">
+          Manager, HR, Fullstack AI, Catalog, Marketing, and DevOps operate as collaborative agents orchestrated to monitor progress, psychological ergonomics, and zero-cloud uptime.
+        </p>
+
+        <!-- Departments Grid -->
+        <div class="departments-grid" id="departmentsGrid">
+          <!-- Populated dynamically via JS from /api/departments -->
+          <div class="empty-state"><div class="spinner-empty"></div><p>Loading Agent Teams...</p></div>
+        </div>
+
+        <!-- Consultation Result Drawer/Card -->
+        <div class="department-consult-result glass-card" id="deptConsultResult" style="display: none;">
+          <div class="consult-header">
+            <div class="consult-title-wrap">
+              <span class="badge-track track-technical" id="consultDeptBadge">MANAGER</span>
+              <h4 id="consultAgentTitle">Manager Agent Briefing</h4>
+            </div>
+            <button id="btnCloseConsult" class="btn btn-outline btn-sm">Close</button>
+          </div>
+          <div class="consult-body">
+            <pre class="code-preview" id="consultOutputView"></pre>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <span>G-OmniOS • Cognitive Memory Firewall Hub & Mind4Action OS</span>
+      <span>Google Always-On Agent • ReasoningBank • Diff-Match-Patch • LevelDB • ScaNN</span>
+      <span>Miniconda Python 3.14 • Local Zero-Cloud Execution</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
